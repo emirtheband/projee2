@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Özgeçmiş</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Genel Stil */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    /* Kart Stili */
+    .card {
+      background: linear-gradient(135deg, #6a2de4, #f5f5f5);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .card:hover {
+      box-shadow: 0px 10px 18px rgba(10, 6, 199, 0.4);
+    }
+
+ 
+
+    /* İlerleme Çubukları */
+    .progress {
+      height: 15px;
+      border-radius: 10px;
+    }
+
+    .progress-bar {
+      background: linear-gradient(90deg, #131313, #e9e5e3);
+    }
+
+    /* Zaman Çizelgesi */
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+      border-left: 4px solid #191a1a;
+    }
+
+    .timeline-item {
+      margin-bottom: 20px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(197, 11, 11, 0.8);
+      color: rgb(27, 25, 25);
+      border-radius: 10px;
+      box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Link Hover */
+    .nav-link:hover {
+      background: #4A90E2;
+      color: white;
+      border-radius: 5px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="text-center py-4">
+    <h1>Özgeçmiş</h1>
+    <p class="lead">Kariyer ve eğitim bilgilerim</p>
+  </header>
+
+  <main class="container">
+    <section class="card text-center">
+      <h2>Emir Çoban</h2>
+      <p>Bilgisayar mühendisiliği öğrencisi ||  Sporcu </p>
+    </section>
+
+   
+
+    <section class="card mt-4">
+      <h2>Eğitim Bilgileri</h2>
+       <p><strong>Mersin Barbaros İlkokulu</strong> – 2010 - 2014</p>
+        <p><strong>Mersin Barbaros Ortaokulu </strong> – 2014 - 2018</p>
+        <p><strong>Mersin  Erdemli Fen Lisesi </strong> – 2018 - 2019</p>
+        <p><strong> Mehmet Adnan Özçelik Anadolu  Lİsesi</strong> – 2019 - 2021</p>
+        <p><strong> Yusuf Kalkavan Anadolu Lisesi </strong> – 2021 - 2022</p>
+      </article>
+      <article>
+        <p><strong> İstanbul Teknik Üniversitesi </strong> – 2022 - 2023</p>
+        <p><strong>Sakarya Üniversitesi</strong> – Bilgisayar Mühendisliği, 2022 - Günümüz</p>
+      </article>
+    </section>
+
+    <section class="card mt-4">
+      <h2>Bildiğim diller</h2>
+      <div>
+        <p>HTML / CSS</p>
+        <div class="progress">
+          <div class="progress-bar bg-primary" style="width: 90%;">90%</div>
+        </div>
+      </div>
+      <div>
+        <p>C#</p>
+        <div class="progress">
+          <div class="progress-bar bg-success" style="width: 80%;">80%</div>
+        </div>
+      </div>
+      <div>
+        <p>C++</p>
+        <div class="progress">
+          <div class="progress-bar bg-warning"  style="width: 80%;">80%</div>
+        </div>
+      </div>
+    </section>
+<main class="container">
+
+
+  <!-- Yetenekler -->
+  <section class="card mt-4">
+    <h2>Yaptığım Sporlar</h2>
+    <ul>
+      <li>Futbol (2013-2021) </li>
+      <li>Santranç (2014-2019)</li>
+      <li>Basketbol (2016-2018)</li>
+    </ul>
+  </section>
+
+ <section class="card mt-4">
+  <h2>Konuştuğum Diller</h2>
+  <table class="table table-bordered text-center">
+    <thead class="table-light">
+      <tr>
+        <th>Dil</th>
+        <th>Seviye</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/tr.png" alt="Türkçe Bayrağı"> Türkçe</td>
+        <td>Ana Dil</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/us.png" alt="İngilizce Bayrağı"> İngilizce</td>
+        <td>B2</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/de.png" alt="Almanca Bayrağı"> Almanca</td>
+        <td>A2</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+ <footer class="footer text-center">
+    <p>&copy; 2025 Emir Çoban | Tüm hakları saklıdır.</p>
+  </footer>
+
+</body>
+</html>
