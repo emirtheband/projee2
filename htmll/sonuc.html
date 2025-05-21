@@ -11,7 +11,7 @@
     }
     .container {
       background: white;
-      max-width: 600px;
+      max-width: 500px;
       margin: auto;
       padding: 30px 40px;
       border-radius: 12px;
@@ -31,12 +31,7 @@
     strong {
       color: #000;
     }
-    .bos-bilgi {
-      color: gray;
-      font-style: italic;
-    }
     .btn {
-      display: block;
       text-align: center;
       margin-top: 20px;
     }
@@ -47,9 +42,6 @@
       text-decoration: none;
       border-radius: 5px;
       font-weight: bold;
-    }
-    .btn a:hover {
-      opacity: 0.8;
     }
   </style>
 </head>
@@ -64,9 +56,13 @@
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    
+
     function formatliBilgi(veri) {
-      return veri ? veri : "<span class='bos-bilgi'>Bilgi girilmedi</span>";
+      return veri ? veri : "Bilgi girilmedi";
+    }
+
+    function formatliSporListesi(spor) {
+      return spor ? spor.split(",").join(", ") : "Bilgi girilmedi";
     }
 
     document.getElementById("sonuc").innerHTML = `
@@ -74,9 +70,9 @@
       <p><strong>Soyad:</strong> ${formatliBilgi(params.get("soyad"))}</p>
       <p><strong>E-posta:</strong> ${formatliBilgi(params.get("email"))}</p>
       <p><strong>Telefon:</strong> ${formatliBilgi(params.get("telefon"))}</p>
-      <p><strong>Konu:</strong> ${formatliBilgi(params.get("konu"))}</p>
-      <p><strong>Mesaj:</strong> ${formatliBilgi(params.get("mesaj"))}</p>
-    `;    
+      <p><strong>Cinsiyet:</strong> ${formatliBilgi(params.get("cinsiyet"))}</p>
+      <p><strong>Spor Tercihi:</strong> ${formatliSporListesi(params.get("spor"))}</p>
+    `;
   </script>
 </body>
 </html>

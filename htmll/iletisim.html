@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>İletişim Formu</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+    #app {
+      background: white;
+      padding: 30px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #444;
+    }
+    input, select, .spor-secim {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .error {
+      color: red;
+      font-size: 0.9em;
+      margin-top: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color: white;
+    }
+    button#bosKontrol {
+      background-color: #dc3545;
+    }
+    button#formatKontrol {
+      background-color: #ffc107;
+      color: black;
+    }
+    button#gonder {
+      background-color: #28a745;
+    }
+    button#temizle {
+      background-color: #6c757d;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>İletişim Formu</h1>
+
+    <form @submit.prevent="gonder">
+      <label>Ad:</label>
+      <input type="text" v-model="form.ad" />
+      <div class="error" v-if="hatalar.ad">{{ hatalar.ad }}</div>
+
+      <label>Soyad:</label>
+      <input type="text" v-model="form.soyad" />
+      <div class="error" v-if="hatalar.soyad">{{ hatalar.soyad }}</div>
+
+      <label>E-posta:</label>
+      <input type="text" v-model="form.email" />
+      <div class="error" v-if="hatalar.email">{{ hatalar.email }}</div>
+
+      <label>Telefon:</label>
+      <input type="text" v-model="form.telefon" />
+      <div class="error" v-if="hatalar.telefon">{{ hatalar.telefon }}</div>
+
+      <label>Cinsiyet:</label>
+      <select v-model="form.cinsiyet">
+        <option disabled value="">Cinsiyet Seçin</option>
+        <option>Erkek</option>
+        <option>Kız</option>
+      </select>
+      <div class="error" v-if="hatalar.cinsiyet">{{ hatalar.cinsiyet }}</div>
+
+      <label>Spor Tercihi:</label>
+      <div class="spor-secim">
+        <input type="checkbox" value="Basketbol" v-model="form.spor"> Basketbol  
+        <input type="checkbox" value="Futbol" v-model="form.spor"> Futbol  
+        <input type="checkbox" value="Voleybol" v-model="form.spor"> Voleybol  
+      </div>
+      <div class="error" v-if="hatalar.spor">{{ hatalar.spor }}</div>
+
+      <button type="button" id="bosKontrol" @click="bosAlanKontrolu">Boş Alanları Kontrol Et</button>
+      <button type="button" id="formatKontrol" @click="formatKontrolu">Formatları Kontrol Et</button>
+      <button type="submit" id="gonder">Gönder</button>
+      <button type="button" id="temizle" @click="temizle">Temizle</button>
+    </form>
+  </div>
+
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        form: {
+          ad: "",
+          soyad: "",
+          email: "",
+          telefon: "",
+          cinsiyet: "",
+          spor: []
+        },
+        hatalar: {}
+      },
+      methods: {
+        bosAlanKontrolu() {
+          this.hatalar = {}; 
+          if (!this.form.ad) this.hatalar.ad = "Ad alanı boş olamaz."; 
+          if (!this.form.soyad) this.hatalar.soyad = "Soyad alanı boş olamaz."; 
+          if (!this.form.email) this.hatalar.email = "E-posta boş olamaz."; 
+          if (!this.form.telefon) this.hatalar.telefon = "Telefon boş olamaz."; 
+          if (!this.form.cinsiyet) this.hatalar.cinsiyet = "Cinsiyet seçmelisiniz."; 
+          if (this.form.spor.length === 0) this.hatalar.spor = "En az bir spor seçmelisiniz."; 
+
+          if (Object.keys(this.hatalar).length > 0) {
+            alert("Lütfen tüm gerekli alanları doldurun!");
+          }
+        },
+        formatKontrolu() {
+          this.hatalar = {};
+          if (this.form.email && !this.gecerliEmail(this.form.email)) {
+            this.hatalar.email = "Geçerli bir e-posta giriniz.";
+          }
+          if (this.form.telefon && !/^\d{10,15}$/.test(this.form.telefon)) {
+            this.hatalar.telefon = "Telefon sadece rakamlardan oluşmalı ve 10-15 karakter arasında olmalıdır.";
+          }
+        },
+        gonder() {
+          this.hatalar = {};
+          this.bosAlanKontrolu();
+          this.formatKontrolu();
+
+          if (Object.keys(this.hatalar).length === 0) {
+            alert("Form başarıyla gönderildi!");
+            const query = new URLSearchParams(this.form).toString();
+            window.location.href = "sonuc.html?" + query;
+          }
+        },
+        temizle() {
+          this.form = {
+            ad: "",
+            soyad: "",
+            email: "",
+            telefon: "",
+            cinsiyet: "",
+            spor: []
+          };
+          this.hatalar = {};
+        },
+        gecerliEmail(email) {
+          const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return regex.test(email);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
