@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>İletişim Formu</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -111,6 +111,8 @@
     </form>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
+
   <script>
     new Vue({
       el: "#app",
@@ -140,7 +142,6 @@
           }
         },
         formatKontrolu() {
-          this.hatalar = {};
           if (this.form.email && !this.gecerliEmail(this.form.email)) {
             this.hatalar.email = "Geçerli bir e-posta giriniz.";
           }
