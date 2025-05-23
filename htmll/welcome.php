@@ -17,7 +17,7 @@ $ogrenciNumarasi = htmlspecialchars($_SESSION["girisYapan"]);
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <style>
     body {
-      background-color: #bbdefb ;
+      background-color: #bbdefb;
       color: white;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
@@ -26,7 +26,6 @@ $ogrenciNumarasi = htmlspecialchars($_SESSION["girisYapan"]);
       height: 100vh;
       margin: 0;
     }
-
     .welcome-box {
       background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80') no-repeat center center;
       background-size: cover;
@@ -39,7 +38,6 @@ $ogrenciNumarasi = htmlspecialchars($_SESSION["girisYapan"]);
       width: 90%;
       position: relative;
     }
-
     .welcome-box::before {
       content: "";
       position: absolute;
@@ -48,29 +46,20 @@ $ogrenciNumarasi = htmlspecialchars($_SESSION["girisYapan"]);
       border-radius: 20px;
       z-index: 1;
     }
-
     .welcome-box * {
       position: relative;
       z-index: 2;
     }
-
     .welcome-box h2 {
       font-size: 2rem;
       font-weight: bold;
     }
-
-    .welcome-box p {
-      font-size: 1.1rem;
-      margin-top: 10px;
-    }
-
     .countdown {
       font-size: 1.2rem;
       color: #ffdd57;
       font-weight: bold;
       margin-top: 20px;
     }
-
     .icon {
       font-size: 3rem;
       color: #00ffd0;
@@ -88,7 +77,7 @@ $ogrenciNumarasi = htmlspecialchars($_SESSION["girisYapan"]);
 </div>
 
 <script>
-  let sayac = 6;
+  let sayac = 4;
   const sayacSpan = document.getElementById('sayac');
 
   const interval = setInterval(() => {
@@ -96,7 +85,7 @@ $ogrenciNumarasi = htmlspecialchars($_SESSION["girisYapan"]);
     sayacSpan.textContent = sayac;
     if (sayac <= 0) {
       clearInterval(interval);
-      window.location.href = "hakkımda.html";
+      window.location.href = "index.html"; 
     }
   }, 1000);
 </script>

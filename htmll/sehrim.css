@@ -1,0 +1,53 @@
+body {
+  background-color: #bbdefb;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1, h3 {
+  color: #090808;
+}
+
+.carousel-item > .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 2rem 0;
+}
+
+.carousel-item img {
+  width: 400px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px #0c0c0c;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.carousel-item img:hover {
+  transform: scale(1.05);
+}
+
+.info-text {
+  max-width: 400px;
+  color: #073763;
+}
+
+.info-card {
+  background: linear-gradient(135deg, #98268e 0%, #c74f9d 100%);
+  color: white;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  max-width: 700px;
+  margin: 2rem auto;
+  box-shadow: 0 6px 15px #2d48e4;
+  font-size: 1.1rem;
+}
+
+footer {
+  background-color: #77523473;
+  color: #fff;
+  padding: 1rem 0;
+  margin-top: 3rem;
+}

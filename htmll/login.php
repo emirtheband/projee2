@@ -1,27 +1,22 @@
 <?php
 session_start();
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $username = htmlspecialchars($_POST["username"]);
-    $password = htmlspecialchars($_POST["password"]);
+// Örnek kullanıcı bilgileri (gerçek veritabanı yerine)
+$users = [
+    "b241210373@sakarya.edu.tr" => "b241210373"
+];
 
-    // Kullanıcı adı bir e-posta formatında mı?
-    if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
-        header("Location: login.html");
-        exit();
-    }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
 
-    // Öğrenci numarasını e-posta adresinden çıkar
-    $ogrenciNumarasi = explode("@", $username)[0];
-
-    // Şifre kontrolü
-    if ($password === $ogrenciNumarasi) {
-        $_SESSION["girisYapan"] = $ogrenciNumarasi;
-        header("Location: welcome.php");
+    if (isset($users[$username]) && $users[$username] == $password) {
+        $_SESSION["girisYapan"] = $username; // Kullanıcıyı oturuma kaydet
+        header("Location: welcome.php"); // Giriş başarılıysa welcome.php'ye yönlendir
         exit();
     } else {
-        echo "<script>alert('Şifre yanlış!'); window.location.href='login.html';</script>";
-        exit();
+        echo "<script>alert('Geçersiz kullanıcı adı veya şifre!'); window.location.href='login.html';</script>";
     }
 }
 ?>
+

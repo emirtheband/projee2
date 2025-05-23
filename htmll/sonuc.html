@@ -2,77 +2,33 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <title>Gönderilen Bilgiler</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f9f9f9;
-      padding: 40px;
-    }
-    .container {
-      background: white;
-      max-width: 500px;
-      margin: auto;
-      padding: 30px 40px;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      color: #333;
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #222;
-    }
-    p {
-      font-size: 16px;
-      margin: 15px 0;
-      line-height: 1.4;
-    }
-    strong {
-      color: #000;
-    }
-    .btn {
-      text-align: center;
-      margin-top: 20px;
-    }
-    .btn a {
-      padding: 10px 15px;
-      background: #007bff;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-    }
-  </style>
+  <title>Form Sonucu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="iletisim.css">
 </head>
 <body>
-  <div class="container">
-    <h2>Gönderilen Bilgiler</h2>
-    <div id="sonuc"></div>
-    <div class="btn">
-      <a href="iletisim.html">Formu Düzenle</a>
-    </div>
+  <div id="app">
+    <h1>Form Sonucu</h1>
+    <p><strong>Ad:</strong> <span id="ad"></span></p>
+    <p><strong>Soyad:</strong> <span id="soyad"></span></p>
+    <p><strong>E-posta:</strong> <span id="email"></span></p>
+    <p><strong>Telefon:</strong> <span id="telefon"></span></p>
+    <p><strong>Cinsiyet:</strong> <span id="cinsiyet"></span></p>
+    <p><strong>Spor Tercihleri:</strong> <span id="spor"></span></p>
+    <p><strong>Mesaj:</strong></p>
+    <p id="message" style="white-space: pre-wrap;"></p>
   </div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
-
-    function formatliBilgi(veri) {
-      return veri ? veri : "Bilgi girilmedi";
-    }
-
-    function formatliSporListesi(spor) {
-      return spor ? spor.split(",").join(", ") : "Bilgi girilmedi";
-    }
-
-    document.getElementById("sonuc").innerHTML = `
-      <p><strong>Ad:</strong> ${formatliBilgi(params.get("ad"))}</p>
-      <p><strong>Soyad:</strong> ${formatliBilgi(params.get("soyad"))}</p>
-      <p><strong>E-posta:</strong> ${formatliBilgi(params.get("email"))}</p>
-      <p><strong>Telefon:</strong> ${formatliBilgi(params.get("telefon"))}</p>
-      <p><strong>Cinsiyet:</strong> ${formatliBilgi(params.get("cinsiyet"))}</p>
-      <p><strong>Spor Tercihi:</strong> ${formatliSporListesi(params.get("spor"))}</p>
-    `;
+    document.getElementById('ad').textContent = params.get('ad') || "";
+    document.getElementById('soyad').textContent = params.get('soyad') || "";
+    document.getElementById('email').textContent = params.get('email') || "";
+    document.getElementById('telefon').textContent = params.get('telefon') || "";
+    document.getElementById('cinsiyet').textContent = params.get('cinsiyet') || "";
+    const spor = params.getAll('spor');
+    document.getElementById('spor').textContent = spor.join(', ');
+    document.getElementById('message').textContent = params.get('message') || "";
   </script>
 </body>
 </html>

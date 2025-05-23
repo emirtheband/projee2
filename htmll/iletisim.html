@@ -4,68 +4,7 @@
   <meta charset="UTF-8" />
   <title>İletişim Formu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      padding: 20px;
-    }
-    #app {
-      background: white;
-      padding: 30px;
-      max-width: 400px;
-      margin: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-      color: #444;
-    }
-    input, select, .spor-secim {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-    }
-    .error {
-      color: red;
-      font-size: 0.9em;
-      margin-top: 5px;
-    }
-    button {
-      padding: 10px 20px;
-      margin-top: 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      color: white;
-    }
-    button#bosKontrol {
-      background-color: #dc3545;
-    }
-    button#formatKontrol {
-      background-color: #ffc107;
-      color: black;
-    }
-    button#gonder {
-      background-color: #28a745;
-    }
-    button#temizle {
-      background-color: #6c757d;
-    }
-    button:hover {
-      opacity: 0.9;
-    }
-  </style>
+  <link rel="stylesheet" href="iletisim.css">
 </head>
 <body>
   <div id="app">
@@ -104,6 +43,10 @@
       </div>
       <div class="error" v-if="hatalar.spor">{{ hatalar.spor }}</div>
 
+      <label>geri dönüsleriniz için :</label>
+      <textarea v-model="form.message" rows="5" placeholder="Mesajınızı buraya yazınız..."></textarea>
+      <div class="error" v-if="hatalar.message">{{ hatalar.message }}</div>
+
       <button type="button" id="bosKontrol" @click="bosAlanKontrolu">Boş Alanları Kontrol Et</button>
       <button type="button" id="formatKontrol" @click="formatKontrolu">Formatları Kontrol Et</button>
       <button type="submit" id="gonder">Gönder</button>
@@ -123,7 +66,8 @@
           email: "",
           telefon: "",
           cinsiyet: "",
-          spor: []
+          spor: [],
+          message: ""
         },
         hatalar: {}
       },
@@ -135,7 +79,8 @@
           if (!this.form.email) this.hatalar.email = "E-posta boş olamaz."; 
           if (!this.form.telefon) this.hatalar.telefon = "Telefon boş olamaz."; 
           if (!this.form.cinsiyet) this.hatalar.cinsiyet = "Cinsiyet seçmelisiniz."; 
-          if (this.form.spor.length === 0) this.hatalar.spor = "En az bir spor seçmelisiniz."; 
+          if (this.form.spor.length === 0) this.hatalar.spor = "En az bir spor seçmelisiniz.";
+          if (!this.form.message) this.hatalar.message = "Mesaj alanı boş olamaz.";
 
           if (Object.keys(this.hatalar).length > 0) {
             alert("Lütfen tüm gerekli alanları doldurun!");
@@ -167,7 +112,8 @@
             email: "",
             telefon: "",
             cinsiyet: "",
-            spor: []
+            spor: [],
+            message: ""
           };
           this.hatalar = {};
         },

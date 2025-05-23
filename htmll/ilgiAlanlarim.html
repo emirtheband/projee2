@@ -1,76 +1,41 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>İlgi Alanlarım - Filmler</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: #f8f9fa;
-      font-family: 'Segoe UI', sans-serif;
-    }
-    .container {
-      margin-top: 40px;
-    }
-    .poster {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    }
-    .film-card {
-      margin-bottom: 30px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İlgi Alanlarım - Oyunlar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-  <div class="container">
-    <h1 class="text-center text-primary mb-4">Sevdiğim Filmler</h1>
-
-    <div class="row" id="filmAlani">
+    <div class="container mt-4">
+        <h1 class="text-center">En Popüler 10 Oyun</h1>
+        <div id="gameList" class="row"></div>
     </div>
-  </div>
 
-  <script>
-    const filmler = [
-      "Inception",
-      "Interstellar",
-      "The Dark Knight",
-      "Gladiator",
-      "Fight Club",
-      "The Matrix"
-    ];
-
-    const filmAlani = document.getElementById("filmAlani");
-
-    filmler.forEach(film => {
-      fetch(`https://www.omdbapi.com/?t=${encodeURIComponent(film)}&apikey=4a3b711b`)
-        .then(res => res.json())
-        .then(data => {
-          if (data.Response === "True") {
-            const filmDiv = document.createElement("div");
-            filmDiv.className = "col-md-4 film-card";
-
-            filmDiv.innerHTML = `
-              <div class="card h-100">
-                <img src="${data.Poster}" class="poster card-img-top" alt="${data.Title}">
-                <div class="card-body">
-                  <h5 class="card-title">${data.Title} (${data.Year})</h5>
-                  <p class="card-text">${data.Genre}<br>IMDB: ${data.imdbRating}</p>
-                </div>
-              </div>
-            `;
-
-            filmAlani.appendChild(filmDiv);
-          }
-        })
-        .catch(err => {
-          console.error("Hata:", err);
-        });
-    });
-  </script>
+    <script>
+        fetch('proxy.php') 
+            .then(response => response.json())
+            .then(data => {
+                let gameList = document.getElementById("gameList");
+                data.slice(0, 10).forEach(game => {
+                    let gameItem = `
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="${game.thumbnail}" class="card-img-top" alt="${game.title}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${game.title}</h5>
+                                    <p class="card-text">${game.short_description}</p>
+                                    <a href="${game.game_url}" class="btn btn-primary">Oyna</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    gameList.innerHTML += gameItem;
+                });
+            })
+            .catch(error => console.error("API yüklenirken hata oluştu!", error));
+    </script>
 
 </body>
 </html>

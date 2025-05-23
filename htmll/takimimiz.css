@@ -1,0 +1,143 @@
+body {
+  background-color: #bbdefb;
+  font-family: 'Poppins', sans-serif;
+  color: #444444;
+  line-height: 1.6;
+}
+
+.header-section {
+  background: linear-gradient(135deg, #c80000, #002868);
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  font-family: 'Roboto Slab', serif;
+  letter-spacing: 1.2px;
+}
+
+.club-logo {
+  max-width: 150px;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(200, 0, 0, 0.7);
+  transition: transform 0.3s ease;
+}
+
+.club-logo:hover {
+  transform: scale(1.1);
+}
+
+.card {
+  background: linear-gradient(135deg, #c80000, #002868);
+  color: white;
+  padding: 25px 30px;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+
+.section-title {
+  color: #ffd6d6;
+  border-bottom: 3px solid #ffd6d6;
+  padding-bottom: 8px;
+  margin-bottom: 25px;
+  font-weight: 700;
+  font-family: 'Roboto Slab', serif;
+  font-size: 1.9rem;
+  letter-spacing: 1px;
+}
+
+.stadium-img,
+.gallery-img,
+.club-logo {
+  border-radius: 10px;
+  border: 4px solid white;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+/* **Resimlerin yan yana görünmesini sağlıyor ve mobil uyum ekliyor** */
+.gallery-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.gallery-img {
+  width: 30%;
+  min-width: 150px;
+  height: auto;
+}
+
+/* **Mobil uyum için medya sorgusu ekledim** */
+@media (max-width: 768px) {
+  .gallery-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .gallery-img {
+    width: 80%;
+  }
+}
+.gallery-row {
+    
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0px; 
+  display: flex;
+  justify-content: center;
+}
+
+.gallery-img {
+  width: 30%;
+  min-width: 150px;
+  height: auto;
+  border-radius: 10px;
+  border: 4px solid white;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+.gallery-img:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .gallery-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gallery-img {
+    width: 80%;
+  }
+}
+blockquote {
+  font-style: italic;
+  color: #fff5f5;
+  border-left: 4px solid #ffd6d6;
+  padding-left: 20px;
+  margin: 20px 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(255, 255, 255, 0.15);
+}
+
+footer {
+  background: linear-gradient(135deg, #c80000, #002868);
+  color: white;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 500;
+  font-size: 1rem;
+  box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.3);
+}
